@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+	<title>%%surma%%</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<style type="text/css">
+body {margin: 30px 0; font: 76% Verdana, Arial, Helvetica, sans-serif; color: #333;}
+div {margin: 0;}
+#main {margin: 0 auto; width: 400px; border: 2px solid #aaa; background-color: #f5f5f5;}
+#copyright {font-size: 0.8em; color: #777; background-color: #e0e0e0; border-top: 1px solid #ccc; padding: 2px 2px 0px 4px;}
+.message, .error {border-bottom: 1px solid #ccc; padding: 2px; padding-left: 7px;}
+.message {color: #000; background-color: #c7ffc7;}
+.error {color: #f00; background-color: #fdd;}
+a:link, a:visited, a:active {color: #777; text-decoration: none;}
+a:hover {text-decoration: underline;}
+table {width: 100%;}
+th {text-align: center; font-size: 1.2em;}
+th, td {vertical-align: middle;}
+td.right {text-align: left;}
+td.left {text-align: right;}
+input {font-size: 1em; color: #000;}
+input.button {height: 1.8em; color: #000; background-color: #fe0;}
+	</style>
+    </head>
+    <body>
+
+<div id="main">
+    $$message$$
+    <form action="surma.pl" method="post" enctype="multipart/form-data">
+	<table>
+	    <tr><th colspan="2">%%Change password%%</th></tr>
+	    <tr><td class="left">%%Username%%:</td><td class="right"><input name="username" type="text" value="" size="20" /></td></tr>
+	    <tr><td class="left">%%Old password%%:</td><td class="right"><input name="oldpw" type="password" value="" size="20" /></td></tr>
+	    <tr><td class="left">%%New password%%:</td><td class="right"><input name="newpw" type="password" value="" size="20" /></td></tr>
+	    <tr><td class="left">%%Retype new password%%:</td><td class="right"><input name="newpw2" type="password" value="" size="20" /></td></tr>
+	    <tr><td class="left"><input class="button" type="submit" value="%%Change%%" /></td><td class="right"><input class="button" type="reset" value="%%Reset%%" /></td></tr>
+	</table>
+    </form>
+    <div id="copyright">&copy; 2008 <a href="http://www.oits.ru/">OITS Co. Ltd.</a></div>
+</div>
+
+    </body>
+</html>

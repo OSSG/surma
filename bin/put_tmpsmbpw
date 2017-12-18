@@ -1,0 +1,38 @@
+#!/bin/bash
+# surma - simple Samba UseR MAnager
+# Script to save Samba passwords from temporary file
+# Copyright (C) 2008 Nikolay A. Fetisov <naf@oits.ru>, OITS Co. Ltd.
+# All Rights Reserved.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+SMBPW=/etc/samba/smbpasswd
+SMBPW_BAK=/etc/samba/smbpasswd.bak
+WS_USER=lighttpd
+LOCKFILE=/var/lock/surma
+
+[ -f "$LOCKFILE" ] || exit 1
+
+TMPPW=`cat "$LOCKFILE"`
+if [ -f "$TMPPW" ]; then
+    if ! diff -q "$TMPPW" "$SMBPW" >/dev/null; then
+        cp -f -- "$SMBPW" "$SMBPW_BAK"
+	cat "$TMPPW" > "$SMBPW"
+	chmod 0600 "$SMBPW"
+	chown root:root "$SMBPW"
+	echo "Ok"
+    fi
+    rm -f "$TMPPW"
+fi
+rm -f -- "$LOCKFILE"
